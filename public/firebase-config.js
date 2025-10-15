@@ -5,7 +5,6 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebas
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDFBhe7k93lFYLuR6c9p08BgVMTfLTFrCU",
     authDomain: "pharmacy-backend-bca79.firebaseapp.com",
     projectId: "pharmacy-backend-bca79",
     storageBucket: "pharmacy-backend-bca79.firebasestorage.app",
