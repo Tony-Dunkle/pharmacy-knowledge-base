@@ -11,45 +11,73 @@
 </head>
 <body>
 
-    <div id="home-view">
-        <header class="home-header">
-            <h1>Pharmacy Knowledge Base</h1>
-        </header>
-        <main class="home-main">
-            <h2>How can we help?</h2>
-            <form id="home-search-form">
-                <div class="search-wrapper">
-                    <input type="text" id="home-search-input" placeholder="Search Medications, Procedures, etc." autocomplete="off">
-                    <button type="submit">Search</button>
-                    <div id="search-suggestions"></div>
+    <div id="auth-view">
+        <div class="auth-container">
+            <h1>Please Login To Continue</h1>
+            <p>Please sign in to continue</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required autocomplete="email">
                 </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn-primary">Sign In</button>
             </form>
-            <div id="category-cards-container">
-            </div>
-        </main>
+            <div class="separator">OR</div>
+            <button id="google-signin-btn" class="btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M21.35,11.1H12.18V13.83H18.69C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12C5,7.75 8.36,4.73 12.19,4.73C15.28,4.73 17.27,6.8 17.27,6.8L19.6,4.58C19.6,4.58 16.7,2 12.19,2C6.42,2 2.03,6.8 2.03,12C2.03,17.2 6.42,22 12.19,22C17.6,22 21.54,18.33 21.54,12.27C21.54,11.72 21.48,11.4 21.35,11.1Z" /></svg>
+                <span>Sign in with Google</span>
+            </button>
+            <p id="auth-error" class="error-message"></p>
+        </div>
     </div>
 
-    <div id="docs-view" class="hidden">
-        <aside class="docs-sidebar">
-            <div class="sidebar-header">
-                <button id="back-to-home-btn">&larr; Home</button>
-            </div>
-            <div class="sidebar-search-container">
-                <input type="text" id="docs-search-input" placeholder="Search this page..." autocomplete="off">
-            </div>
-            <nav id="docs-nav">
-            </nav>
-        </aside>
-        <main class="docs-content">
-            <button id="print-button" title="Print this note">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-            </button>
-            <div id="docs-content-wrapper">
-            </div>
-        </main>
+    <div id="app-container" class="hidden">
+        <div id="home-view">
+            <header class="home-header">
+                <h1>Pharmacy Knowledge Base</h1>
+                <div class="header-controls">
+                    <span id="user-email"></span>
+                    <button id="logout-btn">Logout</button>
+                </div>
+            </header>
+            <main class="home-main">
+                <h2>How can we help?</h2>
+                <form id="home-search-form">
+                    <div class="search-wrapper">
+                        <input type="text" id="home-search-input" placeholder="Search Medications, Procedures, etc." autocomplete="off">
+                        <button type="submit">Search</button>
+                        <div id="search-suggestions"></div>
+                    </div>
+                </form>
+                <div id="category-cards-container"></div>
+            </main>
+        </div>
+
+        <div id="docs-view" class="hidden">
+            <aside class="docs-sidebar">
+                <div class="sidebar-header">
+                    <button id="back-to-home-btn">&larr; Home</button>
+                </div>
+                <div class="sidebar-search-container">
+                    <input type="text" id="docs-search-input" placeholder="Search this page..." autocomplete="off">
+                </div>
+                <nav id="docs-nav"></nav>
+            </aside>
+            <main class="docs-content">
+                <button id="print-button" title="Print this note">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                </button>
+                <div id="docs-content-wrapper"></div>
+            </main>
+        </div>
     </div>
 
     <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="auth.js"></script>
     <script type="module" src="app.js"></script>
 </body>
 </html>

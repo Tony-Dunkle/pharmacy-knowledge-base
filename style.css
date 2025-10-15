@@ -1,47 +1,236 @@
-﻿:root {
-    --bg-color: #121212;
-    --surface-color: #1e1e1e;
-    --primary-color: #bb86fc;
-    --text-color: #e1e1e1;
-    --text-secondary-color: #a0a0a0;
-    --border-color: #2c2c2c;
+﻿/* --- Merged Color & Font Variables --- */
+:root {
+    /* Dark Theme Variables (App) */
+    --app-bg: #121212;
+    --app-surface: #1e1e1e;
+    --app-primary: #bb86fc;
+    --app-primary-hover: #a362ff;
+    --app-text: #e1e1e1;
+    --app-text-secondary: #a0a0a0;
+    --app-border: #2c2c2c;
+    --app-highlight-bg: rgba(187, 134, 252, 0.8);
+    --app-highlight-text: #121212;
+    /* Light Theme Variables (Login) */
+    --login-bg: #f4f7f9;
+    --login-surface: #ffffff;
+    --login-primary: #007bff;
+    --login-primary-hover: #0056b3;
+    --login-secondary: #f8f9fa;
+    --login-secondary-hover: #e2e6ea;
+    --login-text: #333;
+    --login-border: #dee2e6;
+    --login-error: #dc3545;
+    /* Global */
+    --font-family: 'Inter', sans-serif;
     --shadow-color: rgba(0, 0, 0, 0.5);
-    --primary-hover-color: #a362ff;
-    --highlight-bg: rgba(187, 134, 252, 0.8);
-    --highlight-text: #121212;
 }
 
+/* --- Base Body Styles --- */
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    font-family: var(--font-family);
     -webkit-font-smoothing: antialiased;
 }
 
+/* --- Utility Classes --- */
 .hidden {
     display: none !important;
 }
 
-/* --- Home View Styles --- */
-#home-view {
+/* ==============================================
+SECTION: Authentication View (Light Theme)
+==============================================
+*/
+#auth-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: var(--login-bg); /* Use light theme background */
+}
+
+.auth-container {
+    background-color: var(--login-surface);
+    color: var(--login-text);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+    .auth-container h1 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+
+    .auth-container p {
+        margin-bottom: 24px;
+        color: #6c757d;
+    }
+
+/* --- Login Forms & Inputs --- */
+#auth-view .form-group {
+    margin-bottom: 1.25rem;
+    text-align: left;
+}
+
+    #auth-view .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    #auth-view .form-group input {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 1rem;
+        border: 1px solid var(--login-border);
+        border-radius: 4px;
+        box-sizing: border-box;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        background-color: var(--login-surface);
+        color: var(--login-text);
+    }
+
+        #auth-view .form-group input:focus {
+            outline: none;
+            border-color: var(--login-primary);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+/* --- Login Buttons --- */
+#auth-view button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    font-family: var(--font-family);
+}
+
+#auth-view .btn-primary {
+    background-color: var(--login-primary);
+    color: #fff;
+}
+
+    #auth-view .btn-primary:hover {
+        background-color: var(--login-primary-hover);
+    }
+
+#auth-view .btn-secondary {
+    background-color: var(--login-secondary);
+    color: var(--login-text);
+    border: 1px solid var(--login-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+    #auth-view .btn-secondary:hover {
+        background-color: var(--login-secondary-hover);
+    }
+
+/* --- Login Separator & Error Message --- */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #6c757d;
+    margin: 24px 0;
+}
+
+    .separator::before,
+    .separator::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid var(--login-border);
+    }
+
+    .separator:not(:empty)::before {
+        margin-right: .5em;
+    }
+
+    .separator:not(:empty)::after {
+        margin-left: .5em;
+    }
+
+.error-message {
+    color: var(--login-error);
+    min-height: 1.2em;
+    font-size: 0.9rem;
+    margin-top: 16px;
+}
+
+
+/* ==============================================
+SECTION: Main Application (Dark Theme)
+==============================================
+*/
+#app-container {
+    background-color: var(--app-bg);
+    color: var(--app-text);
+    min-height: 100vh; /* Ensures dark background fills the entire screen height */
+}
+
+#home-view, #docs-view {
     animation: fadeIn 0.5s ease;
 }
 
 .home-header {
     padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
-    text-align: center;
-    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--app-border);
+    background-color: var(--app-surface);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
     .home-header h1 {
         font-size: 1.2rem;
         font-weight: 500;
+        text-align: center;
+        flex-grow: 1; /* Allows the title to center properly */
     }
+
+/* --- App Header Controls (Logout) --- */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#user-email {
+    font-size: 0.9rem;
+    color: var(--app-text-secondary);
+}
+
+#logout-btn {
+    width: auto;
+    padding: 8px 16px;
+    background-color: var(--app-surface);
+    color: var(--app-text);
+    border: 1px solid var(--app-border);
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+    #logout-btn:hover {
+        background-color: var(--app-bg);
+    }
+
 
 .home-main {
     max-width: 800px;
@@ -68,16 +257,16 @@ body, html {
     flex-grow: 1;
     font-size: 1rem;
     padding: 0.8rem 1rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--app-border);
     border-radius: 8px 0 0 8px;
-    background-color: var(--surface-color);
-    color: var(--text-color);
+    background-color: var(--app-surface);
+    color: var(--app-text);
     transition: all 0.2s ease;
 }
 
     #home-search-input:focus {
         outline: none;
-        border-color: var(--primary-color);
+        border-color: var(--app-primary);
         box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.3);
         z-index: 10;
     }
@@ -87,7 +276,7 @@ body, html {
     font-size: 1rem;
     font-weight: 500;
     border: none;
-    background-color: var(--primary-color);
+    background-color: var(--app-primary);
     color: #121212;
     border-radius: 0 8px 8px 0;
     cursor: pointer;
@@ -95,7 +284,7 @@ body, html {
 }
 
     #home-search-form button:hover {
-        background-color: var(--primary-hover-color);
+        background-color: var(--app-primary-hover);
     }
 
 #search-suggestions {
@@ -103,8 +292,8 @@ body, html {
     top: 105%;
     left: 0;
     right: 0;
-    background: var(--surface-color);
-    border: 1px solid var(--border-color);
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
     border-radius: 8px;
     box-shadow: 0 10px 15px -3px rgba(0,0,0,0.4);
     z-index: 9;
@@ -118,11 +307,11 @@ body, html {
 }
 
     .suggestion-item:hover {
-        background-color: var(--bg-color);
+        background-color: var(--app-bg);
     }
 
     .suggestion-item small {
-        color: var(--text-secondary-color);
+        color: var(--app-text-secondary);
         margin-left: 0.5rem;
     }
 
@@ -134,8 +323,8 @@ body, html {
 }
 
 .category-card {
-    background: var(--surface-color);
-    border: 1px solid var(--border-color);
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
     border-radius: 8px;
     padding: 1.5rem;
     cursor: pointer;
@@ -144,7 +333,7 @@ body, html {
 
     .category-card:hover {
         transform: translateY(-4px);
-        border-color: var(--primary-color);
+        border-color: var(--app-primary);
     }
 
     .category-card h3 {
@@ -152,13 +341,13 @@ body, html {
     }
 
     .category-card p {
-        color: var(--text-secondary-color);
+        color: var(--app-text-secondary);
         font-size: 0.9rem;
     }
 
     .category-card span {
         font-size: 0.8rem;
-        color: var(--primary-color);
+        color: var(--app-primary);
         font-weight: 500;
     }
 
@@ -166,13 +355,12 @@ body, html {
 #docs-view {
     display: flex;
     height: 100vh;
-    animation: fadeIn 0.5s ease;
 }
 
 .docs-sidebar {
     width: 300px;
-    background: var(--surface-color);
-    border-right: 1px solid var(--border-color);
+    background: var(--app-surface);
+    border-right: 1px solid var(--app-border);
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -180,30 +368,29 @@ body, html {
 
 .sidebar-header {
     padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--app-border);
 }
 
 #back-to-home-btn {
     background: none;
     border: none;
     font-size: 1rem;
-    color: var(--text-secondary-color);
+    color: var(--app-text-secondary);
     cursor: pointer;
 }
 
-/* NEW: In-page search bar styles */
 .sidebar-search-container {
     padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--app-border);
 }
 
 #docs-search-input {
     width: 100%;
     padding: 0.6rem;
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
+    background-color: var(--app-bg);
+    border: 1px solid var(--app-border);
     border-radius: 6px;
-    color: var(--text-color);
+    color: var(--app-text);
     font-size: 0.9rem;
     box-sizing: border-box;
     transition: all 0.2s ease-in-out;
@@ -211,7 +398,7 @@ body, html {
 
     #docs-search-input:focus {
         outline: none;
-        border-color: var(--primary-color);
+        border-color: var(--app-primary);
     }
 
 #docs-nav {
@@ -234,12 +421,12 @@ body, html {
     }
 
         #docs-nav li:hover {
-            background-color: var(--bg-color);
+            background-color: var(--app-bg);
         }
 
         #docs-nav li.active {
             background-color: rgba(187, 134, 252, 0.1);
-            color: var(--primary-color);
+            color: var(--app-primary);
             font-weight: 500;
         }
 
@@ -251,7 +438,7 @@ body, html {
 }
 
     .docs-content h1, .docs-content h2, .docs-content h3 {
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--app-border);
         padding-bottom: 0.5rem;
     }
 
@@ -259,9 +446,9 @@ body, html {
     position: absolute;
     top: 2rem;
     right: 2.5rem;
-    background: var(--surface-color);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary-color);
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
+    color: var(--app-text-secondary);
     cursor: pointer;
     border-radius: 50%;
     width: 44px;
@@ -275,8 +462,8 @@ body, html {
     }
 
 mark.highlight {
-    background-color: var(--highlight-bg);
-    color: var(--highlight-text);
+    background-color: var(--app-highlight-bg);
+    color: var(--app-highlight-text);
     padding: 2px 4px;
     border-radius: 4px;
 }
@@ -291,7 +478,7 @@ mark.highlight {
     }
 }
 
-/* --- Hide All Scrollbars --- */
+/* --- Scrollbar & Callout Styles --- */
 ::-webkit-scrollbar {
     display: none;
 }
@@ -300,14 +487,13 @@ mark.highlight {
     scrollbar-width: none;
 }
 
-/* --- Callout Styles --- */
 .callout {
     margin: 1.5rem 0;
     padding: 1rem 1.5rem;
     border-left-width: 5px;
     border-left-style: solid;
     border-radius: 8px;
-    background-color: var(--bg-color);
+    background-color: var(--app-bg);
 }
 
 .callout-title {
@@ -332,15 +518,14 @@ mark.highlight {
 .callout-content p {
     margin: 0;
     line-height: 1.6;
-    color: var(--text-secondary-color);
+    color: var(--app-text-secondary);
 }
 
-/* Specific Style for the Warning Callout */
 .callout-warning {
     border-left-color: #f59e0b; /* Amber color */
-    background-color: #fffbeb;
+    background-color: rgba(255, 251, 235, 0.1); /* Dark mode friendly */
 }
 
     .callout-warning .callout-title {
-        color: #b45309;
+        color: #f59e0b; /* Amber color */
     }
