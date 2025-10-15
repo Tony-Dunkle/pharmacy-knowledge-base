@@ -1,0 +1,9 @@
+# Ignore the entire scripts directory for security
+/scripts/serviceAccountKey.json
+
+# Ignore Node.js dependencies
+/scripts/node_modules
+node_modules
+
+# Ignore system files
+.DS_Store
